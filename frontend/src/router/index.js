@@ -6,7 +6,12 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-  }
+  },
+  // {
+  //   path: '/new-one',
+  //   name: 'home-two',
+  //   component: HomeView
+  // }
   // {
   //   path: '/about',
   //   name: 'about',

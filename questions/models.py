@@ -6,6 +6,7 @@ from core.models import TimeStampedModel
 
 # Create your models here.
 class Question(TimeStampedModel):
+    uuid = models.UUIDField(default=uuid_lib.uuid4, editable=False)
     content = models.CharField(max_length=240)
     slug = models.SlugField(max_length=255, unique=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="questions") # related_name ist für reversed queries, dh. wir können alle questions von einem user finden
