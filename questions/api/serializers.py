@@ -13,7 +13,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Question
-        exclude = ["updated_at"]
+        exclude = ["id", "updated_at"]
         
     # self ist Klasse und instance ist das Objekt das wir serializen
     # alle folgenden Methoden sind die Methoden für obige models mit SerializerMethodField

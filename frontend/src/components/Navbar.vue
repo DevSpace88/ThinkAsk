@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                    <a class="btn btn-outline-secondary" href="/accounts/logout/">Log out</a>
+                    <a class="btn btn-outline-primary" href="/accounts/logout/">Log out</a>
                     </li>
                 </ul>
                
@@ -35,10 +35,12 @@ export default {
 .navbar-brand {
     font-weight: bold;
     font-size: 150%;
+    border-color: #0d6efd;
 }
 
 .navbar-brand:hover {
-    color: #2d45cc !important;
+    color: #0d6efd !important;
+    border-color: #0d6efd;
 }
 
 </style>
