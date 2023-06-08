@@ -5,7 +5,7 @@
             <p class="mb-0">Posted by: <span class="author-name">{{ question.author }}</span></p>
             <p>{{ question.created_at }}</p>
 
-            <QuestionActions v-if="isQuestionAuthor" :slug="question.slug"/>
+            <QuestionActions v-if="isQuestionAuthor" :slug="question.slug" />
             <div v-if="userHasAnswered">
                 <p class="answer-added">You've written an answer!</p>
             </div>
@@ -31,12 +31,8 @@
         </div>
 
         <div v-if="question">
-            <AnswerComponent 
-            v-for="answer in answers" 
-            :key="answer.uuid" 
-            :answer="answer"
-            :requestUser="requestUser"
-            />
+            <AnswerComponent v-for="answer in answers" :key="answer.uuid" :answer="answer" :requestUser="requestUser"
+                @delete-answer="deleteAnswer" />
         </div>
 
         <div class="my-4">
@@ -77,12 +73,12 @@ export default {
         }
     },
     computed: {
-        isQuestionAuthor(){
+        isQuestionAuthor() {
             return this.question.author == this.requestUser;
         }
     },
     methods: {
-        setRequestUser(){
+        setRequestUser() {
             this.requestUser = window.localStorage.getItem("username");
         },
         setPageTitle(title) {
@@ -129,8 +125,8 @@ export default {
             }
             const endpoint = `/api/v1/questions/${this.slug}/answer/`;
             try {
-                const response = await axios.post(endpoint, { 
-                    body: this.newAnswerBody 
+                const response = await axios.post(endpoint, {
+                    body: this.newAnswerBody
                 });
                 this.answers.unshift(response.data)
                 this.newAnswerBody = null;
@@ -143,12 +139,23 @@ export default {
                 console.log(error.response);
                 alert(error.response.statusText);
             }
+        },
+        async deleteAnswer(answer) {
+            const endpoint = `/api/v1/answers/${answer.uuid}/`;
+            try {
+                await axios.delete(endpoint);
+                this.answers.splice(this.answers.indexOf(answer), 1);
+                this.userHasAnswered = false;
+            } catch (error) {
+                console.log(error.response);
+                alert(error.response.statusText);
+            }
         }
     },
     created() {
         this.getQuestionData();
         this.getQuestionAnswers();
-        this.setRequestUser(); 
+        this.setRequestUser();
     }
 };
 </script>
