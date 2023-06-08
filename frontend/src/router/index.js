@@ -15,7 +15,16 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "thinkask" */ '../views/QuestionView.vue'),
     props: true
-  }
+  },
+  {
+    // ? makes slug optional
+    path: '/ask/:slug?',
+    name: 'question-editor',
+   
+    component: () => import(/* webpackChunkName: "question-editor" */ '../views/QuestionEditor.vue'),
+    props: true
+   
+  },
 ]
 
 const router = createRouter({

@@ -9,9 +9,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
+
                     <li class="nav-item">
+                        <router-link class="btn btn-outline-primary" :to="{ name: 'question-editor' }">Ask Question</router-link>
+                   
+                    </li>
+
+                    <li class="nav-item mx-3">
                     <a class="btn btn-outline-primary" href="/accounts/logout/">Log out</a>
                     </li>
+                    
                 </ul>
                
             </div>
