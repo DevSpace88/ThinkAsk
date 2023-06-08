@@ -25,6 +25,14 @@ const routes = [
     props: true
    
   },
+  {
+    path: '/answer/:uuid',
+    name: 'answer-editor',
+   
+    component: () => import(/* webpackChunkName: "question-editor" */ '../views/AnswerEditor.vue'),
+    props: true
+   
+  },
 ]
 
 const router = createRouter({
