@@ -66,7 +66,8 @@ export default {
                 const response = await axios.get(endpoint);
                 return next(vm => vm.questionBody = response.data.content)
             } catch (error) {
-                console.log(error)
+                console.log(error.response);
+                alert(error.response.statusText);
             }
         }
         else {

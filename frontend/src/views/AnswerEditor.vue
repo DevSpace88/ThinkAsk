@@ -42,7 +42,8 @@ export default {
                     params: { slug: this.questionSlug }
                 });
             } catch (error) {
-                console.log(error)
+                console.log(error.response);
+                alert(error.response.statusText);
             }
 
         },
@@ -58,7 +59,8 @@ export default {
                 )
             );
         } catch (error) {
-            console.log(error)
+            console.log(error.response);
+            alert(error.response.statusText);
         }
     }
 

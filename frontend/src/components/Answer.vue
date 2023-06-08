@@ -15,12 +15,16 @@
                 Yes, delete my Answer
             </button>
         </div>
+        <div v-else>
+            <button class="btn btn-sm btn-primary" @click="toggleLike">&#128077; <span v-if="likesCounter">({{ likesCounter }})</span></button>
+        </div>
         <hr>
     </div>
 </template>
 
 
 <script>
+import { axios } from "@/common/api.service.js";
 export default {
     name: "AnswerComponent",
     props: {
@@ -33,9 +37,11 @@ export default {
             required: true
         }
     },
-    data(){
+    data() {
         return {
-            showDeleteConfirmationBtn: false
+            showDeleteConfirmationBtn: false,
+            userLikedAnswer: this.answer.user_has_voted,
+            likesCounter: this.answer.likes_count,
         }
     },
     computed: {
@@ -44,7 +50,32 @@ export default {
         }
     },
     methods: {
-        triggerDeleteAnswer(){
+        toggleLike() {
+            this.userLikedAnswer === false ? this.likeAnswer() : this.unlikeAnswer();
+        },
+        async likeAnswer() {
+            this.userLikedAnswer = true;
+            this.likesCounter += 1;
+            const endpoint = `/api/v1/answers/${this.answer.uuid}/like/`;
+            try {
+                await axios.post(endpoint);
+            } catch (error) {
+                console.log(error.response);
+                alert(error.response.statusText);
+            }
+        },
+        async unlikeAnswer() {
+            this.userLikedAnswer = false;
+            this.likesCounter -= 1;
+            const endpoint = `/api/v1/answers/${this.answer.uuid}/like/`;
+            try {
+                await axios.delete(endpoint);
+            } catch (error) {
+                console.log(error.response);
+                alert(error.response.statusText);
+            }
+        },
+        triggerDeleteAnswer() {
             this.$emit("delete-answer", this.answer);
         }
     }
@@ -52,4 +83,3 @@ export default {
 </script>
 
 
-<style></style>
