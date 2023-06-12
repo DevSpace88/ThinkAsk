@@ -9,9 +9,14 @@ Functionalities:
 - Likes
 - Dynamic rendering thx to Vue
 
+eventually you have to make migrations
 `./manage.py makemigrations`
 
+
 `./manage.py migrate`
+
+eventually you have to create a superuser:
+`./manage.py createsuperuser`
 
 `./manage.py runserver`
 
