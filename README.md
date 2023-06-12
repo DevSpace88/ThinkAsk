@@ -1,13 +1,13 @@
 # ThinkAsk
-A Website for asking and answering questions made with Dajngo Rest Framework and Vue3
+A Website for asking and answering questions made with Django Rest Framework and Vue3
 
 Functionalities:
 - User authentication and authorization
-- pagination
+- Pagination
+- Posting questions
+- Posting answers
 - Likes
-- posting questions
-- posting answers
-- dynamic rendering thx to Vue
+- Dynamic rendering thx to Vue
 
 `./manage.py makemigrations`
 
