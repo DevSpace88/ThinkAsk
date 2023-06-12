@@ -8,6 +8,7 @@ A Website for asking and answering questionsmade with Dajngo Rest Framework and 
 `./manage.py runserver`
 
 `cd frontend/`
+
 `npm run serve`
 
 
